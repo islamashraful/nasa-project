@@ -1,0 +1,17 @@
+{
+  "name": "nasa-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install-server": "yarn --cwd server",
+    "install-client": "yarn --cwd client",
+    "install": "yarn run install-server && yarn run install-client",
+    "client": "yarn --cwd client start",
+    "server": "yarn --cwd server run watch",
+    "watch": "yarn run server & yarn run client"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
