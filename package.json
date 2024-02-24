@@ -9,7 +9,8 @@
     "install": "yarn run install-server && yarn run install-client",
     "client": "yarn --cwd client start",
     "server": "yarn --cwd server run watch",
-    "watch": "yarn run server & yarn run client"
+    "watch": "yarn run server & yarn run client",
+    "deploy": "yarn --cwd client run build && yarn --cwd server start"
   },
   "keywords": [],
   "author": "",
