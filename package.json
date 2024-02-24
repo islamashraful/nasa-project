@@ -10,7 +10,8 @@
     "client": "yarn --cwd client start",
     "server": "yarn --cwd server run watch",
     "watch": "yarn run server & yarn run client",
-    "deploy": "yarn --cwd client run build && yarn --cwd server start"
+    "deploy": "yarn --cwd client run build && yarn --cwd server start",
+    "test": "yarn --cwd server test"
   },
   "keywords": [],
   "author": "",
