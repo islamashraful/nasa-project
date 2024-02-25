@@ -59,7 +59,13 @@ async function savePlanet(planet) {
 }
 
 function getAllPlanets() {
-  return planets.find({});
+  return planets.find(
+    {},
+    {
+      _id: 0,
+      __v: 0,
+    }
+  );
 }
 
 module.exports = {
