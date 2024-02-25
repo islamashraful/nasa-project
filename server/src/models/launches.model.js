@@ -31,7 +31,7 @@ async function scheduleNewLaunch(launch) {
     flightNumber: newFlightNumber,
   });
 
-  launchesDatabase.findOneAndUpdate(
+  await launchesDatabase.findOneAndUpdate(
     {
       flightNumber: launch.flightNumber,
     },
@@ -46,8 +46,8 @@ function getAllLaunches() {
   return launchesDatabase.find({}, { _id: 0, __v: 0 });
 }
 
-function existsLaunchWithId(launchId) {
-  return launchesDatabase.findOne({
+async function existsLaunchWithId(launchId) {
+  return await launchesDatabase.findOne({
     flightNumber: launchId,
   });
 }
