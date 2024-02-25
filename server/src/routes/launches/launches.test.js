@@ -14,7 +14,7 @@ describe("Launches API", () => {
   describe("GET /launches", () => {
     it("should respond with 200 status", async () => {
       await request(app)
-        .get("/launches")
+        .get("/v1/launches")
         .expect("Content-Type", /json/)
         .expect(200);
     });
@@ -28,7 +28,7 @@ describe("Launches API", () => {
         target: "Kepler-62 f",
         launchDate: "January 4, 2028",
       };
-      await request(app).post("/launches").send(validPostData).expect(201);
+      await request(app).post("/v1/launches").send(validPostData).expect(201);
     });
 
     it("should return error for required properties", () => {
@@ -44,7 +44,7 @@ describe("Launches API", () => {
         };
         delete invalidLaunchData[item];
         const response = await request(app)
-          .post("/launches")
+          .post("/v1/launches")
           .send(invalidLaunchData)
           .expect(400);
 
@@ -62,7 +62,7 @@ describe("Launches API", () => {
         launchDate: "foo",
       };
       const response = await request(app)
-        .post("/launches")
+        .post("/v1/launches")
         .send(launchData)
         .expect(400);
 
@@ -84,7 +84,7 @@ describe("Launches API", () => {
       delete launchDataWithouDate.launchDate;
 
       const response = await request(app)
-        .post("/launches")
+        .post("/v1/launches")
         .send(launchData)
         .expect(201);
 
