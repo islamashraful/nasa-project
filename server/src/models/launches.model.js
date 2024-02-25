@@ -56,18 +56,27 @@ async function scheduleNewLaunch(launch) {
 }
 
 function getAllLaunches() {
-  return Array.from(launches.values());
+  return launchesDatabase.find({}, { _id: 0, __v: 0 });
 }
 
 function existsLaunchWithId(launchId) {
-  return launches.has(launchId);
+  return launchesDatabase.findOne({
+    flightNumber: launchId,
+  });
 }
 
-function abortLaunchById(launchId) {
-  const aborted = launches.get(launchId);
-  aborted.upcoming = false;
-  aborted.success = false;
-  return aborted;
+async function abortLaunchById(launchId) {
+  const aborted = await launchesDatabase.updateOne(
+    {
+      flightNumber: launchId,
+    },
+    {
+      upcoming: false,
+      success: false,
+    }
+  );
+
+  return aborted.modifiedCount === 1;
 }
 
 module.exports = {
